@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.authRoute = void 0;
+const express_1 = require("express");
+const constants_1 = require("../../../constants");
+const auth_controller_1 = require("../controller/auth.controller");
+const validate_incoming_middleware_1 = require("../../../middleware/validations/validate-incoming.middleware");
+const zod_schema_1 = require("../../../lib/zod.schema");
+const auth_guard_middleware_1 = require("../../../middleware/authrorization/auth-guard.middleware");
+exports.authRoute = (0, express_1.Router)();
+const authController = new auth_controller_1.AuthController();
+exports.authRoute.post(constants_1.APP_CONTANTS.authEndPoints.login, (0, validate_incoming_middleware_1.validateIncomingData)(zod_schema_1.authSchema), authController.handleLogin);
+exports.authRoute.post(constants_1.APP_CONTANTS.authEndPoints.singup, (0, validate_incoming_middleware_1.validateIncomingData)(zod_schema_1.createAccountSchema), authController.handleSignUp);
+exports.authRoute.get(constants_1.APP_CONTANTS.authEndPoints.me, auth_guard_middleware_1.authGuard, authController.handgetLoggedInUser);
+exports.authRoute.get(constants_1.APP_CONTANTS.authEndPoints.logout, auth_guard_middleware_1.authGuard, authController.handleLogout);
+exports.authRoute.get(constants_1.APP_CONTANTS.authEndPoints.refresh, authController.handleRefresh);

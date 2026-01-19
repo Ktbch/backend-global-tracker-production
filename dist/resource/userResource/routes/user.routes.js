@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.userRoutes = void 0;
+const express_1 = require("express");
+const constants_1 = require("../../../constants");
+const auth_guard_middleware_1 = require("../../../middleware/authrorization/auth-guard.middleware");
+const user_controlle_1 = require("../controller/user.controlle");
+exports.userRoutes = (0, express_1.Router)();
+const userController = new user_controlle_1.UserController();
+exports.userRoutes.get(constants_1.APP_CONTANTS.userEndPoints.profileDetails, auth_guard_middleware_1.authGuard, userController.handleLoadProfile);
+exports.userRoutes.put(constants_1.APP_CONTANTS.userEndPoints.profileUpdate, auth_guard_middleware_1.authGuard, userController.handleUpdateProfile);

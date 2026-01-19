@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.adminRoutes = void 0;
+const express_1 = require("express");
+const constants_1 = require("../../../constants");
+const auth_guard_middleware_1 = require("../../../middleware/authrorization/auth-guard.middleware");
+const admin_controller_1 = require("../controllers/admin.controller");
+const check_role_midlleware_1 = require("../../../middleware/authrorization/check-role.midlleware");
+exports.adminRoutes = (0, express_1.Router)();
+const adminController = new admin_controller_1.AdminController();
+exports.adminRoutes.get(constants_1.APP_CONTANTS.adminEndPoints.allShipments, auth_guard_middleware_1.authGuard, check_role_midlleware_1.checkRole, adminController.handleGetAllShipment);
+exports.adminRoutes.get(constants_1.APP_CONTANTS.adminEndPoints.partnerDetails, auth_guard_middleware_1.authGuard, check_role_midlleware_1.checkRole, adminController.handleGetAllPartnerDetails);
+exports.adminRoutes.get(constants_1.APP_CONTANTS.adminEndPoints.paymentDetails, auth_guard_middleware_1.authGuard, check_role_midlleware_1.checkRole, adminController.handleGetPayment);

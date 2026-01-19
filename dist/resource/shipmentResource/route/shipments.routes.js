@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.shipmentRoute = void 0;
+const express_1 = require("express");
+const constants_1 = require("../../../constants");
+const auth_guard_middleware_1 = require("../../../middleware/authrorization/auth-guard.middleware");
+const shipment_controller_1 = require("../controller/shipment.controller");
+const validate_incoming_middleware_1 = require("../../../middleware/validations/validate-incoming.middleware");
+const zod_schema_1 = require("../../../lib/zod.schema");
+exports.shipmentRoute = (0, express_1.Router)();
+const shipmentController = new shipment_controller_1.ShipController();
+exports.shipmentRoute.get(constants_1.APP_CONTANTS.shipmentEndPoints.shipment, auth_guard_middleware_1.authGuard, shipmentController.handleGetUserShipment);
+exports.shipmentRoute.get(constants_1.APP_CONTANTS.shipmentEndPoints.shipmentByTrackingNumber, auth_guard_middleware_1.authGuard, shipmentController.handleGetUserShipmentByTrackingNumber);
+exports.shipmentRoute.post(constants_1.APP_CONTANTS.shipmentEndPoints.createShipments, auth_guard_middleware_1.authGuard, (0, validate_incoming_middleware_1.validateIncomingData)(zod_schema_1.createShipmentSchema), shipmentController.handleCreateShipment);
+exports.shipmentRoute.post(constants_1.APP_CONTANTS.shipmentEndPoints.createShipmentItems, auth_guard_middleware_1.authGuard, shipmentController.handleCreateShipmentItem);
