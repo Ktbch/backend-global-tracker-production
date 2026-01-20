@@ -10,6 +10,10 @@ export default defineConfig({
     schema: './src/db/schema.ts',
     dialect: 'mysql',
     dbCredentials: {
-        url: "mysql://letherte_letherte:AMAsQ(]ZF^BsqgF@localhost:3306/letherte_global-tracking",
+        database: AppConfig.dbName,
+        host: AppConfig.dbHost,
+        password: AppConfig.dbPassword,
+        user: AppConfig.dbUser,
+        port: Number(AppConfig.dbPort)
     },
 });
