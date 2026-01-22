@@ -2,7 +2,6 @@
 
 import 'dotenv/config';
 import { defineConfig } from 'drizzle-kit';
-import AppConfig from './src/config.ts/config'
 
 
 export default defineConfig({
@@ -10,10 +9,10 @@ export default defineConfig({
     schema: './src/db/schema.ts',
     dialect: 'mysql',
     dbCredentials: {
-        database: AppConfig.dbName,
-        host: AppConfig.dbHost,
-        password: AppConfig.dbPassword,
-        user: AppConfig.dbUser,
-        port: Number(AppConfig.dbPort)
+        host: "localhost",
+        database: "letherte_global-tracking",
+        password: "]467)yTAtGcL?r*)",
+        user: "letherte_kay",
+        port: 3306
     },
 });

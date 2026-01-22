@@ -28,6 +28,8 @@ exports.APP_CONTANTS = {
 };
 exports.cookieOption = {
     httpOnly: true,
+    secure: true,
     sameSite: "none",
     maxAge: 7 * 24 * 60 * 100,
+    path: "/"
 };
