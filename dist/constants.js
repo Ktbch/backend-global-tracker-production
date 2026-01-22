@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.cookieOption=exports.APP_CONTANTS=exports.BASE_URL=void 0;
-exports.BASE_URL="/global-tracker/api/v1";
-exports.APP_CONTANTS={
+exports.cookieOption = exports.APP_CONTANTS = exports.BASE_URL = void 0;
+exports.BASE_URL = "/global-tracker/api/v1";
+exports.APP_CONTANTS = {
     adminEndPoints: {
         allShipments: '/admin/all-shipments',
         partnerDetails: '/admin/partner-details',
@@ -26,9 +26,8 @@ exports.APP_CONTANTS={
         shipmentByTrackingNumber: "/shipment/:id"
     }
 };
-exports.cookieOption={
+exports.cookieOption = {
     httpOnly: true,
-    sameSite: "lax",
-    maxAge: 7*24*60*100,
-    path: "/"
+    sameSite: "none",
+    maxAge: 7 * 24 * 60 * 100,
 };
